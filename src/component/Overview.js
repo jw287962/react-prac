@@ -12,13 +12,13 @@ class Overview extends React.Component {
         <div>
              <ul> {this.props.name[0]}
             {this.props.name.map(
-                function namesIterator(item, i ){
+                function namesIterator(item, i){
                   if(i == 0){
                   i++;
                   return;
                   } 
                   return(
-                    <li key={item}> {item} </li>
+                    <li key={item+i}> {item} </li>
                   )
                 }
               )}
