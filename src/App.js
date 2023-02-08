@@ -4,22 +4,31 @@ import React from "react";
 class App extends React.Component {
   constructor () {
     super();
-
+   
       this.state = {
-        name: '',
+        names: ['TASKS'],
       }
 
       this.handleClick = this.handleClick.bind(this);
+      this.submitButton = this.submitButton.bind(this);
   }
-    handleClick(e){
+  submitButton(e){
     e.preventDefault();
-
     const nameHolder = e.target.name.value;
       this.setState({ 
-        name: nameHolder,
+        names: [...this.state.names,nameHolder],
       })
 
   }
+
+  handleClick(e){
+    const nameHolder = e.target.parentElement.name.value;
+    this.setState({ 
+      names: [...this.state.names,nameHolder],
+    })
+
+  }
+ 
   render() {
   return (
     <div className="App">
@@ -27,14 +36,14 @@ class App extends React.Component {
         
       </header>
       <div>
-          <form onSubmit={this.handleClick} >
+          <form onSubmit={this.submitButton}   >
               <label htmlFor='name'>TEST:</label>
               <input type='text' id="name"></input>
-              <input type='button' value="Submit" ></input>
+              <input type='button' value="Submit"  onClick={this.handleClick}></input>
           </form>
       </div>
 
-      <Overview name={this.state.name}></Overview>
+      <Overview name={this.state.names}></Overview>
     </div>
   );
 }
